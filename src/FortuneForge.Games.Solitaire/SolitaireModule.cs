@@ -12,7 +12,7 @@ public static class SolitaireModule
             "solitaire",
             "Competitive Solitaire",
             GameCategory.Card,
-            "0.3.1",
+            "0.4.0",
             "/cards/solitaire",
             "/api/solitaire",
             GameCapability.Credits | GameCapability.FreePlay | GameCapability.Multiplayer | GameCapability.Bots | GameCapability.History);

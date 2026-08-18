@@ -12,7 +12,7 @@ public static class TexasHoldemModule
             "texas-holdem",
             "Texas Hold'em",
             GameCategory.Card,
-            "0.3.1",
+            "0.4.0",
             "/cards/texas-holdem",
             "/api/cards/texas-holdem/credit",
             GameCapability.Credits | GameCapability.Multiplayer | GameCapability.Bots | GameCapability.History);

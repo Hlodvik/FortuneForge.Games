@@ -13,15 +13,15 @@ The application consumes immutable, versioned NuGet packages from this repositor
 ## Initial projects
 
 - `FortuneForge.Games.Abstractions`: identifiers, descriptors, capabilities, and stable module contracts.
-- `FortuneForge.Games.Cards`: standard playing-card primitives and the existing wire-code format.
-- `FortuneForge.Games.Blackjack`: Blackjack actions, outcomes, hand scoring, and single-hand transitions.
-- `FortuneForge.Games.Solitaire`: deterministic Klondike deal and move validation.
-- `FortuneForge.Games.TexasHoldem`: deterministic deck generation and hand evaluation.
+- `FortuneForge.Games.Cards`: standard playing-card primitives plus deterministic, account-neutral bot runtime support.
+- `FortuneForge.Games.Blackjack`: Blackjack rules, bot decisions, table state, turn cadence, dealer flow, and round transitions.
+- `FortuneForge.Games.Solitaire`: deterministic Klondike rules, bot decisions, competition state, ranking, and simulation.
+- `FortuneForge.Games.TexasHoldem`: deck and hand rules, bot decisions, table state, blinds, turn progression, side pots, and showdown settlement intents.
 - `FortuneForge.Games.Tests`: package contract and compatibility tests.
 
 Game manifests under `catalog/games` are the source for the future generated website catalog. Adding a game should eventually require a package and manifest rather than edits to application navigation.
 
-The first application integration removes duplicated Blackjack rules, the full Solitaire rules engine, and Texas Hold'em deck/evaluation rules from the API repository. Multiplayer lobby orchestration, bots, persistence, HTTP DTO projection, and money movement remain application adapters until their platform dependencies are expressed as narrow interfaces.
+The application integration removes duplicated rules, state machines, and bot decision engines for Blackjack, Solitaire, and Texas Hold'em from the API repository. Matchmaking, persistence, HTTP projection, authentication, and actual money movement remain application adapters. Game packages can calculate deterministic settlement intent but cannot access account stores or credentials.
 
 ## Verify
 

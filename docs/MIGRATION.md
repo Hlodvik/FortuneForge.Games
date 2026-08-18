@@ -27,14 +27,14 @@ The application is intentionally unchanged during this stage.
 - Compare package rules against the existing behavior with canonical and application-level tests.
 - Remove duplicated Blackjack, Solitaire, and Hold'em rule implementations only after package-backed application tests pass.
 
-### 3. Game-by-game server extraction
+### 3. Game-by-game server extraction — complete for Blackjack, Hold'em, and Solitaire
 
-- Texas Hold'em multiplayer state machine and bots.
-- Blackjack multiplayer table orchestration.
-- Solitaire tournament coordination.
+- Texas Hold'em rules, multiplayer state machine, and bots.
+- Blackjack rules, multiplayer table state machine, and bots.
+- Solitaire rules, competition state/ranking, and bots.
 - Slot definitions, math, and feature engines.
 
-Firestore stores, controllers, rate limits, authentication, and account settlement stay in `FortuneForge.App` until explicit platform interfaces exist.
+Firestore stores, controllers, rate limits, authentication, matchmaking, and execution of account settlement stay in `FortuneForge.App` as host adapters.
 
 ### 4. Client packages and generated catalog
 

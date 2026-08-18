@@ -4,7 +4,7 @@
   "id": "blackjack",
   "displayName": "Fortune Blackjack",
   "category": "card",
-  "packageVersion": "0.3.1",
+  "packageVersion": "0.4.0",
   "clientRoute": "/cards/blackjack",
   "apiBasePath": "/api/cards/blackjack/table",
   "capabilities": ["credits", "multiplayer", "bots", "history"],
