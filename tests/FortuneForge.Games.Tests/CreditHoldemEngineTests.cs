@@ -1,3 +1,4 @@
+using System.Text.Json;
 using FortuneForge.Games.TexasHoldem;
 using Xunit;
 
@@ -160,6 +161,27 @@ public sealed class CreditHoldemEngineTests
 
         Assert.All(match.Players, player => Assert.InRange(player.StartingStack, 1, 10_000));
         Assert.Equal(10_000, match.Players.Single(player => !player.IsBot).StartingStack);
+    }
+
+    [Fact]
+    public void LegacyStoredMatchDefaultsCollectionsAddedAfterInitialRelease()
+    {
+        var current = Deal(3);
+        var json = JsonSerializer.Serialize(current, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        using var document = JsonDocument.Parse(json);
+        var legacyFields = document.RootElement.EnumerateObject()
+            .Where(property => property.Name is not "leavingActorIds" and not "humanPayoutsCents")
+            .ToDictionary(property => property.Name, property => property.Value.Clone());
+        var legacyJson = JsonSerializer.Serialize(legacyFields, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+        var restored = JsonSerializer.Deserialize<CreditHoldemMatch>(
+            legacyJson, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+        Assert.NotNull(restored);
+        Assert.Empty(restored.LeavingActorIds);
+        Assert.Empty(restored.HumanPayoutsCents);
+        Assert.Equal(current.MatchId, restored.MatchId);
+        Assert.Equal(current.Players.Count, restored.Players.Count);
     }
 
     [Fact]

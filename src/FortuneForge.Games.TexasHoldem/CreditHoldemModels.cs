@@ -182,8 +182,10 @@ internal sealed class CreditHoldemMatch
     public required string PartitionKey { get; init; }
     public string TableRuleId { get; init; } = CreditHoldemTableRules.StandardId;
     public required List<CreditHoldemTicket> PendingTakeovers { get; init; }
-    public required HashSet<string> LeavingActorIds { get; init; }
-    public required Dictionary<string, long> HumanPayoutsCents { get; set; }
+    // These collections were introduced after the first credit-table documents
+    // were persisted. Keep absent JSON fields compatible with those matches.
+    public HashSet<string> LeavingActorIds { get; init; } = new(StringComparer.Ordinal);
+    public Dictionary<string, long> HumanPayoutsCents { get; set; } = new(StringComparer.Ordinal);
     public DateTime? ActionDeadlineAtUtc { get; set; }
     public DateTime? CompletedAtUtc { get; set; }
     public int NextCardIndex { get; set; }
