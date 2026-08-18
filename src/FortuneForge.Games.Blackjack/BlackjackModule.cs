@@ -12,7 +12,7 @@ public static class BlackjackModule
             "blackjack",
             "Fortune Blackjack",
             GameCategory.Card,
-            "0.3.0",
+            "0.3.1",
             "/cards/blackjack",
             "/api/cards/blackjack/table",
             GameCapability.Credits | GameCapability.Multiplayer | GameCapability.Bots | GameCapability.History);

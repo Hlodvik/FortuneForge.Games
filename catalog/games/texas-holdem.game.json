@@ -4,7 +4,7 @@
   "id": "texas-holdem",
   "displayName": "Texas Hold'em",
   "category": "card",
-  "packageVersion": "0.3.0",
+  "packageVersion": "0.3.1",
   "clientRoute": "/cards/texas-holdem",
   "apiBasePath": "/api/cards/texas-holdem/credit",
   "capabilities": ["credits", "multiplayer", "bots", "history"],
