@@ -1,7 +1,9 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/FortuneForge.Games.Abstractions/FortuneForge.Games.Abstractions.csproj" />
+    <Project Path="src/FortuneForge.Games.Blackjack/FortuneForge.Games.Blackjack.csproj" />
     <Project Path="src/FortuneForge.Games.Cards/FortuneForge.Games.Cards.csproj" />
+    <Project Path="src/FortuneForge.Games.Solitaire/FortuneForge.Games.Solitaire.csproj" />
     <Project Path="src/FortuneForge.Games.TexasHoldem/FortuneForge.Games.TexasHoldem.csproj" />
   </Folder>
   <Folder Name="/tests/">

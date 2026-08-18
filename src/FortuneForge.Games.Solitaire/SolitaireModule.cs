@@ -1,21 +1,21 @@
 using FortuneForge.Games.Abstractions;
 
-namespace FortuneForge.Games.TexasHoldem;
+namespace FortuneForge.Games.Solitaire;
 
-public static class TexasHoldemModule
+public static class SolitaireModule
 {
     public static GameDescriptor Descriptor { get; } = CreateDescriptor();
 
     private static GameDescriptor CreateDescriptor()
     {
         var descriptor = new GameDescriptor(
-            "texas-holdem",
-            "Texas Hold'em",
+            "solitaire",
+            "Competitive Solitaire",
             GameCategory.Card,
             "0.3.0",
-            "/cards/texas-holdem",
-            "/api/cards/texas-holdem/credit",
-            GameCapability.Credits | GameCapability.Multiplayer | GameCapability.Bots | GameCapability.History);
+            "/cards/solitaire",
+            "/api/solitaire",
+            GameCapability.Credits | GameCapability.FreePlay | GameCapability.Multiplayer | GameCapability.Bots | GameCapability.History);
         descriptor.Validate();
         return descriptor;
     }

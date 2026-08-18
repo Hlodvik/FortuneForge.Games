@@ -10,7 +10,7 @@
 
 ## Stages
 
-### 1. Foundation — current milestone
+### 1. Foundation — complete
 
 - Create the independent solution and package conventions.
 - Define game descriptors and catalog manifests.
@@ -19,19 +19,19 @@
 
 The application is intentionally unchanged during this stage.
 
-### 2. Package integration
+### 2. Package integration — complete for the first three card games
 
-- Configure a private NuGet feed and npm registry.
+- Configure private NuGet publishing and keep a vendored bootstrap feed until authenticated CI restore is available.
 - Publish prerelease packages from tagged builds.
-- Update the API host to consume `FortuneForge.Games.TexasHoldem` through a thin compatibility adapter.
-- Compare the package evaluator against the existing evaluator with the full canonical and randomized corpus.
-- Remove the old evaluator only after the package-backed application tests pass.
+- Update the API host to consume the Hold'em, Blackjack, and Solitaire rules packages through compatibility imports.
+- Compare package rules against the existing behavior with canonical and application-level tests.
+- Remove duplicated Blackjack, Solitaire, and Hold'em rule implementations only after package-backed application tests pass.
 
 ### 3. Game-by-game server extraction
 
-- Texas Hold'em state machine and bots.
-- Blackjack rules and table state machine.
-- Solitaire engine and validation.
+- Texas Hold'em multiplayer state machine and bots.
+- Blackjack multiplayer table orchestration.
+- Solitaire tournament coordination.
 - Slot definitions, math, and feature engines.
 
 Firestore stores, controllers, rate limits, authentication, and account settlement stay in `FortuneForge.App` until explicit platform interfaces exist.

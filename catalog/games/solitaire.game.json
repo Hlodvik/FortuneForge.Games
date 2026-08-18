@@ -4,9 +4,9 @@
   "id": "solitaire",
   "displayName": "Competitive Solitaire",
   "category": "card",
-  "packageVersion": "0.1.0",
+  "packageVersion": "0.3.0",
   "clientRoute": "/cards/solitaire",
   "apiBasePath": "/api/solitaire",
   "capabilities": ["credits", "free-play", "multiplayer", "bots", "history"],
-  "migrationState": "catalog-only"
+  "migrationState": "package-backed"
 }

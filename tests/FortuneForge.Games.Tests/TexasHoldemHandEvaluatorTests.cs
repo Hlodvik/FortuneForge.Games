@@ -13,6 +13,17 @@ public sealed class TexasHoldemHandEvaluatorTests
     }
 
     [Fact]
+    public void DeterministicDeckPreservesTheExistingStream()
+    {
+        var first = TexasHoldemRules.CreateDeck(12345);
+        var second = TexasHoldemRules.CreateDeck(12345);
+
+        Assert.Equal(first, second);
+        Assert.Equal(52, first.Count);
+        Assert.Equal(52, first.Distinct(StringComparer.Ordinal).Count());
+    }
+
+    [Fact]
     public void EvaluatorPreservesCanonicalServerOrdering()
     {
         var straightFlush = TexasHoldemHandEvaluator.Evaluate(

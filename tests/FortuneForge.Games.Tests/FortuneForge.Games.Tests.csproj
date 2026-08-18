@@ -13,7 +13,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/FortuneForge.Games.Abstractions/FortuneForge.Games.Abstractions.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Blackjack/FortuneForge.Games.Blackjack.csproj" />
     <ProjectReference Include="../../src/FortuneForge.Games.Cards/FortuneForge.Games.Cards.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Solitaire/FortuneForge.Games.Solitaire.csproj" />
     <ProjectReference Include="../../src/FortuneForge.Games.TexasHoldem/FortuneForge.Games.TexasHoldem.csproj" />
   </ItemGroup>
   <ItemGroup>

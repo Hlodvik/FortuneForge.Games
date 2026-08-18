@@ -1,0 +1,30 @@
+name: publish-packages
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["games-v*"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  nuget:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet test FortuneForge.Games.slnx -c Release
+      - run: dotnet pack FortuneForge.Games.slnx -c Release --no-build --output artifacts/packages -p:ContinuousIntegrationBuild=true
+      - name: Publish immutable packages
+        shell: pwsh
+        run: |
+          Get-ChildItem artifacts/packages/*.nupkg | ForEach-Object {
+            dotnet nuget push $_.FullName `
+              --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" `
+              --api-key "${{ secrets.GITHUB_TOKEN }}" `
+              --skip-duplicate
+          }
