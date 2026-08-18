@@ -1,0 +1,12 @@
+{
+  "$schema": "../game-manifest.schema.json",
+  "schemaVersion": 1,
+  "id": "spades",
+  "displayName": "Spades",
+  "category": "card",
+  "packageVersion": "0.1.0",
+  "clientRoute": "/cards/spades",
+  "apiBasePath": "/api/games/spades",
+  "capabilities": ["free-play", "multiplayer"],
+  "migrationState": "rules-pilot"
+}

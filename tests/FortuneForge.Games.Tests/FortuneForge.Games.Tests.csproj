@@ -15,8 +15,15 @@
     <ProjectReference Include="../../src/FortuneForge.Games.Abstractions/FortuneForge.Games.Abstractions.csproj" />
     <ProjectReference Include="../../src/FortuneForge.Games.Blackjack/FortuneForge.Games.Blackjack.csproj" />
     <ProjectReference Include="../../src/FortuneForge.Games.Cards/FortuneForge.Games.Cards.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Craps/FortuneForge.Games.Craps.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Dice/FortuneForge.Games.Dice.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Hearts/FortuneForge.Games.Hearts.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.LiarsDice/FortuneForge.Games.LiarsDice.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Roulette/FortuneForge.Games.Roulette.csproj" />
     <ProjectReference Include="../../src/FortuneForge.Games.Solitaire/FortuneForge.Games.Solitaire.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.Spades/FortuneForge.Games.Spades.csproj" />
     <ProjectReference Include="../../src/FortuneForge.Games.TexasHoldem/FortuneForge.Games.TexasHoldem.csproj" />
+    <ProjectReference Include="../../src/FortuneForge.Games.TrickTaking/FortuneForge.Games.TrickTaking.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

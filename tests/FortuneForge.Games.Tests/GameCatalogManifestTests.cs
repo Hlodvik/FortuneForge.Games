@@ -1,10 +1,24 @@
 using System.Text.Json;
 using FortuneForge.Games.Abstractions;
+using FortuneForge.Games.Craps;
+using FortuneForge.Games.Hearts;
+using FortuneForge.Games.LiarsDice;
+using FortuneForge.Games.Roulette;
+using FortuneForge.Games.Spades;
 
 namespace FortuneForge.Games.Tests;
 
 public sealed class GameCatalogManifestTests
 {
+    private static readonly GameDescriptor[] SkeletonPackageDescriptors =
+    [
+        CrapsModule.Descriptor,
+        HeartsModule.Descriptor,
+        LiarsDiceModule.Descriptor,
+        RouletteModule.Descriptor,
+        SpadesModule.Descriptor,
+    ];
+
     [Fact]
     public void EveryCatalogManifestMapsToAValidDescriptor()
     {
@@ -31,6 +45,33 @@ public sealed class GameCatalogManifestTests
             descriptor.Validate();
         }
     }
+
+    [Fact]
+    public void SkeletonPackageDescriptorsMatchTheirCatalogManifests()
+    {
+        var root = FindRepositoryRoot();
+        var manifests = Directory.GetFiles(Path.Combine(root, "catalog", "games"), "*.game.json")
+            .Select(ReadManifest)
+            .ToDictionary(manifest => manifest.Id, StringComparer.Ordinal);
+
+        foreach (var descriptor in SkeletonPackageDescriptors)
+            Assert.Equal(descriptor, ToDescriptor(manifests[descriptor.Id]));
+    }
+
+    private static CatalogManifest ReadManifest(string path) =>
+        JsonSerializer.Deserialize<CatalogManifest>(
+            File.ReadAllText(path),
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+        ?? throw new InvalidDataException($"Manifest '{path}' could not be read.");
+
+    private static GameDescriptor ToDescriptor(CatalogManifest manifest) => new(
+        manifest.Id,
+        manifest.DisplayName,
+        ParseCategory(manifest.Category),
+        manifest.PackageVersion,
+        manifest.ClientRoute,
+        manifest.ApiBasePath,
+        ParseCapabilities(manifest.Capabilities));
 
     private static string FindRepositoryRoot()
     {

@@ -10,16 +10,25 @@
 
 The application consumes immutable, versioned NuGet packages from this repository. A vendored bootstrap feed keeps local and isolated-release builds reproducible until authenticated private-feed restore is connected in CI.
 
-## Initial projects
+## Projects
 
 - `FortuneForge.Games.Abstractions`: identifiers, descriptors, capabilities, and stable module contracts.
 - `FortuneForge.Games.Cards`: standard playing-card primitives plus deterministic, account-neutral bot runtime support.
 - `FortuneForge.Games.Blackjack`: Blackjack rules, bot decisions, table state, turn cadence, dealer flow, and round transitions.
+- `FortuneForge.Games.TrickTaking`: shared four-seat dealing, follow-suit, and trick-resolution contracts.
+- `FortuneForge.Games.Spades`: a `0.1.0` foundation for bidding, trump play, tricks, and basic partnership scoring.
+- `FortuneForge.Games.Hearts`: a `0.1.0` foundation for point restrictions, trick play, scoring, and shooting the moon.
+- `FortuneForge.Games.Dice`: shared immutable standard-die contracts.
+- `FortuneForge.Games.LiarsDice`: a `0.1.0` bid-and-challenge round foundation.
+- `FortuneForge.Games.Roulette`: a `0.1.0` single-zero bet-validation and settlement foundation.
+- `FortuneForge.Games.Craps`: a `0.1.0` pass-line come-out and point-lifecycle foundation.
 - `FortuneForge.Games.Solitaire`: deterministic Klondike rules, bot decisions, competition state, ranking, and simulation.
 - `FortuneForge.Games.TexasHoldem`: deck and hand rules, bot decisions, table state, blinds, turn progression, side pots, and showdown settlement intents.
 - `FortuneForge.Games.Tests`: package contract and compatibility tests.
 
-Game manifests under `catalog/games` are the source for the future generated website catalog. Adding a game should eventually require a package and manifest rather than edits to application navigation.
+Game manifests under `catalog/games` are the source for the future generated website catalog. The `0.1.0` foundations are intentionally non-production: they expose deterministic rules and contracts, but no matchmaking, persistence, account access, or credit capability.
+
+The first rule slice is deliberately narrow. Spades has basic partnership contracts without nil, bags, or match scoring; Hearts omits passing; Liar's Dice uses exact-face matching rather than wild ones; Roulette is single-zero; and Craps currently covers one pass-line bet.
 
 The application integration removes duplicated rules, state machines, and bot decision engines for Blackjack, Solitaire, and Texas Hold'em from the API repository. Matchmaking, persistence, HTTP projection, authentication, and actual money movement remain application adapters. Game packages can calculate deterministic settlement intent but cannot access account stores or credentials.
 
