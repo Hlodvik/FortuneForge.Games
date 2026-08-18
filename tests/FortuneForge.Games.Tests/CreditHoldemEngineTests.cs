@@ -163,14 +163,20 @@ public sealed class CreditHoldemEngineTests
         Assert.Equal(10_000, match.Players.Single(player => !player.IsBot).StartingStack);
     }
 
-    [Fact]
-    public void LegacyStoredMatchDefaultsCollectionsAddedAfterInitialRelease()
+    [Theory]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    [InlineData(false, false)]
+    public void LegacyStoredMatchDefaultsCollectionsAddedAfterInitialRelease(
+        bool includeLeavingActorIds,
+        bool includeHumanPayoutsCents)
     {
         var current = Deal(3);
         var json = JsonSerializer.Serialize(current, new JsonSerializerOptions(JsonSerializerDefaults.Web));
         using var document = JsonDocument.Parse(json);
         var legacyFields = document.RootElement.EnumerateObject()
-            .Where(property => property.Name is not "leavingActorIds" and not "humanPayoutsCents")
+            .Where(property => includeLeavingActorIds || property.Name is not "leavingActorIds")
+            .Where(property => includeHumanPayoutsCents || property.Name is not "humanPayoutsCents")
             .ToDictionary(property => property.Name, property => property.Value.Clone());
         var legacyJson = JsonSerializer.Serialize(legacyFields, new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
